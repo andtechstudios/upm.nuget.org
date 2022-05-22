@@ -1,0 +1,25 @@
+on:
+  create:
+    tags:
+      - v*
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          echo "@foo:registry=https://${{secrets.GITLAB_PKG_URL}}/npm/" >> ~/.npmrc
+          echo "//${{secrets.GITLAB_PKG_URL}}/npm/:_authToken=${{secrets.GITLAB_ACCESS_TOKEN}}" >> ~/.npmrc
+      - run: |
+          for folder in unity/Assets/org.nuget.*/
+          do
+            cd $folder
+            jq ".author.name=\"NuGet Gallery\"" package.json > out.json
+            jq ".author.email=\"andtechstudios@gmail.com\"" package.json > out.json
+            jq ".author.url=\"https://github.com/andtechstudios\"" package.json > out.json
+            jq ".publishConfig.registry=\"https://${{secrets.GITLAB_PKG_URL}}/npm/\"" package.json > out.json
+            mv out.json package.json
+            npm publish || echo -e '\e[33;1mPublish failed!\e[37;1m'
+            cd -
+          done

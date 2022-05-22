@@ -1,0 +1,8 @@
+{
+	"name": "org.nuget.WatsonTcp",
+	"version": "4.8.14.10",
+	"displayName": "WatsonTcp",
+	"dependencies": {
+		"org.nuget.Netwonsoft.Json": ">= 12.0.3"
+	}
+}
