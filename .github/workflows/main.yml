@@ -23,6 +23,7 @@ jobs:
             jq ".author.url=\"https://github.com/andtechstudios\"" temp.json > package.json
             cp package.json temp.json
             jq ".publishConfig.registry=\"https://${{secrets.GITLAB_PKG_URL}}/npm/\"" temp.json > package.json
+            rm temp.json
             npm publish || echo -e '\e[33;1m[Warning] '$folder' was not published!\e[37;1m'
             cd -
           done
