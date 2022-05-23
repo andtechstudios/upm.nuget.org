@@ -15,11 +15,14 @@ jobs:
           for folder in unity/Assets/org.nuget.*/
           do
             cd $folder
-            jq ".author.name=\"NuGet Gallery\"" package.json > out.json
-            jq ".author.email=\"andtechstudios@gmail.com\"" package.json > out.json
-            jq ".author.url=\"https://github.com/andtechstudios\"" package.json > out.json
-            jq ".publishConfig.registry=\"https://${{secrets.GITLAB_PKG_URL}}/npm/\"" package.json > out.json
-            mv out.json package.json
+            cp package.json temp.json
+            jq ".author.name=\"NuGet Gallery\"" temp.json > package.json
+            cp package.json temp.json
+            jq ".author.email=\"andtechstudios@gmail.com\"" temp.json > package.json
+            cp package.json temp.json
+            jq ".author.url=\"https://github.com/andtechstudios\"" temp.json > package.json
+            cp package.json temp.json
+            jq ".publishConfig.registry=\"https://${{secrets.GITLAB_PKG_URL}}/npm/\"" temp.json > package.json
             npm publish || echo -e '\e[33;1mPublish failed!\e[37;1m'
             cd -
           done
