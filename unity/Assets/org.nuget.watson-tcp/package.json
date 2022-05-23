@@ -1,5 +1,5 @@
 {
-	"name": "org.nuget.WatsonTcp",
+	"name": "org.nuget.watson-tcp",
 	"version": "4.8.14.10",
 	"displayName": "WatsonTcp",
 	"dependencies": {

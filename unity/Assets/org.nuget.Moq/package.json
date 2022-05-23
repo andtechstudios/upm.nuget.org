@@ -1,5 +1,5 @@
 {
-	"name": "org.nuget.Moq",
+	"name": "org.nuget.moq",
 	"version": "4.18.1",
 	"displayName": "Moq",
 	"dependencies": {

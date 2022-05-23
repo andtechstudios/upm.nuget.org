@@ -1,5 +1,5 @@
 {
-	"name": "org.nuget.Newtonsoft.Json",
+	"name": "org.nuget.newtonsoft.json",
 	"version": "12.0.3",
 	"displayName": "Json.NET"
 }
